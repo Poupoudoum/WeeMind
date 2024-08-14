@@ -1,0 +1,27 @@
+<?php
+
+//get masterming game from data
+/** @var GameMastermind $m */
+$m = $this->getData("mastermind");
+
+?>
+<h3>Changer les paramètres du jeu : </h3>
+<p>Attention cela lancera une nouvelle partie ! <a href='/play'>retourner à ma partie en cours.</a></p>
+<form method="post" action="settings">
+    <div class="mb-3">
+        <label for="height" class="form-label">Nombre de possibilité par case</label>
+        <input name="h" type="number" class="form-control" id="height" min='2' max='9' value='<?= $m->getCombinationHeight() ?>'>
+        <div class="form-text">Entre 2 et 9</div>
+    </div>
+    <div class="mb-3">
+        <label for="height" class="form-label">Nombre de cases</label>
+        <input name="w" type="number" class="form-control" id="height" min='1' max='12' value='<?= $m->getCombinationWidth() ?>'>
+        <div class="form-text">Entre 1 et 12</div>
+    </div>
+    <div class="mb-3">
+        <label for="height" class="form-label">Nombre d'essais avant de perdre</label>
+        <input name="a" type="number" class="form-control" id="height" min='2' max='50' value='<?= $m->getMaxAtemps() ?>'>
+        <div class="form-text">Entre 2 et 50</div>
+    </div>
+    <button type="submit" class="btn btn-success">Jouer avec ces parametres</button>
+</form>

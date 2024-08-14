@@ -7,6 +7,6 @@
 
 
 abstract class Persister {
-    public abstract function save(Saveable $s, $index);
-    public abstract function load(Loadable $l, $index);
+    public abstract static function save(Saveable $s, $index);
+    public abstract static function load(Loadable &$l, $index);
 }

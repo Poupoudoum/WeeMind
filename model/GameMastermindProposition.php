@@ -13,10 +13,16 @@ class GameMastermindProposition extends GameMove {
     
     public function __construct(GameMastermind $game, protected string $combination) {
         parent::__construct($game);
+        //@todo ad validation of proposed combination (width and height)
     }
     
-    public function getCombination() {
-        return $this->combination;
+    /**
+     * 
+     * @param null|int $pos if set the char at this position will be returned position start at 0 and is limited to propositionWidth - 1
+     * @return string
+     */
+    public function getCombination($pos = null) {
+        return $pos !== null ? substr($this->combination, $pos, 1) : $this->combination;
     }
     
     public function getValidCount() : int {

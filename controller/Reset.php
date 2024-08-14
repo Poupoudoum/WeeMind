@@ -6,12 +6,13 @@
  */
 
 
-class Controller_Index extends Controller_Abstract {
+class Controller_Reset extends Controller_Play {
     
     public function run() {
-        $this->renderPage([new Renderer('index')]);
+        $this->game->reset();
+        
+        $this->redirectGet();
     }
-    
     
     
 }

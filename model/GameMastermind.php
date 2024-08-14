@@ -8,18 +8,32 @@
 
 class GameMastermind extends Game {
     
+    CONST DEFAULT_WIDTH = 4;
+    CONST DEFAULT_HEIGHT = 6;
+    CONST DEFAULT_ATEMPTS = 15;
+    
     /**
      * @var GameMastermindProposition[]
      */
     protected $propositions = array();
     
     public function __construct(
-            protected $combinationWidth = 4, 
-            protected $combinationHeight = 6, 
-            protected $maxAtemps = 15, 
+            protected ?int $combinationWidth = null, 
+            protected ?int $combinationHeight = null, 
+            protected ?int $maxAtemps = null, 
             protected $combination = null
             ) {
-        parent::__construct();
+        
+        if (!is_numeric($this->combinationWidth) || $this->combinationWidth < 1) {
+            $this->combinationWidth = static::DEFAULT_WIDTH;
+        }
+        if (!is_numeric($this->combinationHeight) || $this->combinationHeight < 2) {
+            $this->combinationHeight = static::DEFAULT_HEIGHT;
+        }
+        if (!is_numeric($this->maxAtemps) || $this->combinationHeight < 2) {
+            $this->maxAtemps = static::DEFAULT_ATEMPTS;
+        }
+        
         if (!$this->combination) {
             $this->generateRandomCombination();
         }
@@ -54,9 +68,13 @@ class GameMastermind extends Game {
     }
     
     public function getWinner(): ?int {
-        return end($this->propositions)->getCombination() == $this->combination ? 1 : null;
+        return (count($this->propositions) && end($this->propositions)->getCombination() == $this->combination) ? 1 : null;
     }
 
+    public function getValidPropositionRegex() {
+        return "/^[1-{$this->getCombinationHeight()}]{{$this->getCombinationWidth()}}$/";
+    }
+    
     public function play(\GameMove $move) {
         if ($this->isGameOver()) {
             throw new Exception("Game is over");

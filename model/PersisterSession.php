@@ -8,11 +8,11 @@
 
 class PersisterSession extends Persister {
     
-    public function load(Loadable $l, $index) {
-        return is_array($_SESSION[$index]) ? $l::createFromSaveArray($_SESSION[$index]) : $l;
+    public static function load(Loadable &$l, $index) {
+        return $l = is_array($_SESSION[$index] ?? false) ? $l::createFromSaveArray($_SESSION[$index]) : $l;
     }
 
-    public function save(Saveable $s, $index) {
+    public static function save(Saveable $s, $index) {
         $_SESSION[$index] = $s->toSaveArray();
     }
     

@@ -21,11 +21,13 @@ $pindex = -1;
                 <td><?= $p->getCombination($i) ?></td>
             <?php endfor; ?>
             <td>
-                <span class='nobr'>
-                <?php for($i = 0; $i < $p->getValidCount(); $i++) : ?>
+                <?php $v = $p->getValidCount(); ?>
+                <?php $a = $p->getApproxCount(); ?>
+                <span class='nobr' style="cursor:help;" title="<?= ($v > 1 ? "$v exacts" : "$v exact") . ", " . ($a > 1 ? "$a mal placés" : "$a mal placé")  ?>" >
+                <?php for($i = 0; $i < $v; $i++) : ?>
                     <span class="pion blanc">&bull;</span>
                 <?php endfor; ?>
-                <?php for($i = 0; $i < $p->getApproxCount(); $i++) : ?>
+                <?php for($i = 0; $i < $a; $i++) : ?>
                     <span class="pion rouge">&bull;</span>
                 <?php endfor; ?>
                 </span>

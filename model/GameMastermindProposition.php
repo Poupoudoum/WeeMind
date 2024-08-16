@@ -11,8 +11,11 @@
  */
 class GameMastermindProposition extends GameMove {
     
-    public function __construct(GameMastermind $game, protected string $combination) {
+    protected $combination;
+            
+    public function __construct(GameMastermind $game, $combination) {
         parent::__construct($game);
+        $this->combination = $combination;
         //@todo ad validation of proposed combination (width and height)
     }
     

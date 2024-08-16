@@ -8,5 +8,9 @@
 
 
 abstract class GameMove {
-    public function __construct(protected Game $game) {}
+    protected $game;
+    
+    public function __construct(Game $game) {
+        $this->game = $game;
+    }
 }

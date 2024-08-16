@@ -16,13 +16,21 @@ class GameMastermind extends Game {
      * @var GameMastermindProposition[]
      */
     protected $propositions = array();
+    protected $combinationWidth = null;
+    protected $combinationHeight = null; 
+    protected $maxAtemps = null;
+    protected $combination = null;
     
     public function __construct(
-            protected ?int $combinationWidth = null, 
-            protected ?int $combinationHeight = null, 
-            protected ?int $maxAtemps = null, 
-            protected $combination = null
+            $combinationWidth = null, 
+            $combinationHeight = null, 
+            $maxAtemps = null, 
+            $combination = null
             ) {
+        $combinationWidth = $this->combinationWidth;
+        $combinationHeight = $this->combinationHeight;
+        $maxAtemps = $this->maxAtemps;
+        $combination = $this->combination;
         
         if (!is_numeric($this->combinationWidth) || $this->combinationWidth < 1) {
             $this->combinationWidth = static::DEFAULT_WIDTH;
@@ -67,7 +75,7 @@ class GameMastermind extends Game {
         return $this->getWinner() || count($this->propositions) >= $this->maxAtemps;
     }
     
-    public function getWinner(): ?int {
+    public function getWinner() {
         return (count($this->propositions) && end($this->propositions)->getCombination() == $this->combination) ? 1 : null;
     }
 

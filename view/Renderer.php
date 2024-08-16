@@ -11,14 +11,17 @@ class Renderer {
      * @var Renderer[]
      */
     protected $children = array();
+    protected $template;
+    protected $data;
     
     /**
      * Renderer class : to output HTML
      * @param string $template name of phtml file in views without the phtml extention example for /view/index.phtml pass "index" 
      * @param array $data
      */
-    public function __construct(protected $template, protected array $data = array()) {
-        
+    public function __construct($template, array $data = array()) {
+        $this->template = $template;
+        $this->data = $data;
     }
     
     /**

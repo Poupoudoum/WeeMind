@@ -27,10 +27,10 @@ class GameMastermind extends Game {
             $maxAtemps = null, 
             $combination = null
             ) {
-        $combinationWidth = $this->combinationWidth;
-        $combinationHeight = $this->combinationHeight;
-        $maxAtemps = $this->maxAtemps;
-        $combination = $this->combination;
+        $this->combinationWidth = $combinationWidth;
+        $this->combinationHeight = $combinationHeight;
+        $this->maxAtemps = $maxAtemps;
+        $this->combination = $combination;
         
         if (!is_numeric($this->combinationWidth) || $this->combinationWidth < 1) {
             $this->combinationWidth = static::DEFAULT_WIDTH;

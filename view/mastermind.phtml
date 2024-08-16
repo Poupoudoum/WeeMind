@@ -34,7 +34,7 @@ $pindex = -1;
         <?php endforeach; ?>
         <?php if (!$m->isGameOver()) : ?>
         <tr>
-            <th colspan="<?= $m->getCombinationWidth() + 2 ?>">A vous de jouer !</th>
+            <th colspan="<?= $m->getCombinationWidth() + 2 ?>"><a name='proposition'></a>A vous de jouer !</th>
         </tr>
         <tr>
             <td><small>#<?= $pindex + 2 ?>/<?= $m->getMaxAtemps() ?></small></td>

@@ -55,7 +55,7 @@ class Controller_Play extends Controller_Abstract {
         //save in session
         PersisterSession::save($this->game, static::GAME_SESSION_INDEX);
         //redirect get
-        header("Location: /play");
+        header("Location: /play#proposition");
         exit;
     }
     

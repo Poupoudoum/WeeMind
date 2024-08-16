@@ -108,13 +108,19 @@ class GameMastermind extends Game {
     }
 
     public static function createFromSaveArray(array $saveArray): \Loadable {
-        //one set by property
-        $instance = new self();
+
         
-        if (isset($saveArray['combinationWidth'])) { $instance->combinationWidth = $saveArray['combinationWidth']; }
-        if (isset($saveArray['combinationHeight'])) { $instance->combinationHeight = $saveArray['combinationHeight']; }
-        if (isset($saveArray['maxAtemps'])) { $instance->maxAtemps = $saveArray['maxAtemps']; }
-        if (isset($saveArray['combination'])) { $instance->combination = $saveArray['combination']; }
+        $combinationWidth = null;
+        $combinationHeight = null; 
+        $maxAtemps = null;
+        $combination = null;
+        if (isset($saveArray['combinationWidth'])) { $combinationWidth = $saveArray['combinationWidth']; }
+        if (isset($saveArray['combinationHeight'])) { $combinationHeight = $saveArray['combinationHeight']; }
+        if (isset($saveArray['maxAtemps'])) { $maxAtemps = $saveArray['maxAtemps']; }
+        if (isset($saveArray['combination'])) { $combination = $saveArray['combination']; }
+        
+        $instance = new GameMastermind($combinationWidth, $combinationHeight, $maxAtemps, $combination);
+        
         if (isset($saveArray['propositions'])) { 
             foreach ($saveArray['propositions'] as $proposition) {
                 $instance->addProposition($proposition);
